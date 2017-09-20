@@ -9,10 +9,6 @@ env:
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
     - PATH=$PATH:/usr/local/android-sdk/build-tools/25.0.2
 
-before_install:
-  - gem install fastlane -v 2.53.1 --no-rdoc --no-ri --no-document
-  - gem install supply -v 1.0.0 --no-rdoc --no-ri --no-document
-
 android:
   components:
     - tools
