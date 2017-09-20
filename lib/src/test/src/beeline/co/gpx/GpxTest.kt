@@ -53,10 +53,18 @@ class GpxTest {
 
     @Test
     fun route() = assertGpxEquals(fixture("route.gpx"), Gpx(
-            creator = "RouteConverter"
-    )) // TODO
-
-    // TODO: route with track
+            creator = "RouteConverter",
+            metadata = Metadata(name = "Test file by Patrick"),
+            routes = list(Route(
+                    name = "Patrick's Route",
+                    points = list(
+                            RoutePoint(54.9328621088893, 9.860624216140083, name = "Position 1", ele = 0.0),
+                            RoutePoint(54.93293237320851, 9.86092208681491, name = "Position 2", ele = 0.0),
+                            RoutePoint(54.93327743521187, 9.86187816543752, name = "Position 3", ele = 0.0),
+                            RoutePoint(54.93342326167919, 9.862439849679859, name = "Position 4", ele = 0.0)
+                    )
+            ))
+    ))
 
     private fun <T> list(vararg items: T): Observable<T> = Observable.from(listOf(*items))
 
