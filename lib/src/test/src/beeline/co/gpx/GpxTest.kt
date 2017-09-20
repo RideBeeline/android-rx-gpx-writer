@@ -68,7 +68,7 @@ class GpxTest {
 
     private fun <T> list(vararg items: T): Observable<T> = Observable.from(listOf(*items))
 
-    private fun fixture(filename: String): File = File("lib/fixtures", filename)
+    private fun fixture(filename: String): File = File("fixtures", filename)
 
     private fun Gpx.xmlString(): String =
         writeTo(StringWriter())
