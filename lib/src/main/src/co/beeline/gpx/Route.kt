@@ -1,7 +1,7 @@
-package beeline.co.gpx
+package co.beeline.gpx
 
-import beeline.co.gpx.xml.XmlWritable
-import beeline.co.gpx.xml.XmlWrite
+import co.beeline.gpx.xml.XmlWritable
+import co.beeline.gpx.xml.XmlWrite
 import rx.Observable
 
 data class Route(

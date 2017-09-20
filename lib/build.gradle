@@ -9,7 +9,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "beeline.co.gpx"
+        applicationId "co.beeline.gpx"
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1

@@ -1,8 +1,8 @@
-package beeline.co.gpx
+package co.beeline.gpx
 
-import beeline.co.gpx.xml.XmlWritable
-import beeline.co.gpx.xml.XmlWrite
-import beeline.co.gpx.xml.writeTo
+import co.beeline.gpx.xml.XmlWritable
+import co.beeline.gpx.xml.XmlWrite
+import co.beeline.gpx.xml.writeTo
 import rx.Observable
 import rx.Single
 import java.io.Writer

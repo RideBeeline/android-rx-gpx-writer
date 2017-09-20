@@ -1,4 +1,4 @@
-package beeline.co.gpx
+package co.beeline.gpx
 
 import org.apache.tools.ant.filters.StringInputStream
 import org.junit.Assert.assertFalse

@@ -1,4 +1,4 @@
-package beeline.co.gpx.xml
+package co.beeline.gpx.xml
 
 import android.util.Xml
 import org.xmlpull.v1.XmlSerializer
