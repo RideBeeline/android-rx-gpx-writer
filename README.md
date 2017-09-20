@@ -1,6 +1,7 @@
 # RxGPX Writer for Android
 
 <a href="https://jitpack.io/#RideBeeline/android-rx-gpx-writer" title="Release"><img src="https://jitpack.io/v/RideBeeline/android-rx-gpx-writer.svg"></a>
+<a href="https://travis-ci.org/RideBeeline/android-rx-gpx-writer"><img src="https://travis-ci.org/RideBeeline/android-rx-gpx-writer.svg?branch=master"></a>
 
 Create GPX v1.1 files from streams of data on Android.
 
