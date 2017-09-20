@@ -1,7 +1,6 @@
-# RxGPXWriter for Android
+# RxGPX Writer for Android
 
-[![Release](https://jitpack.io/v/RideBeeline/android-rx-gpx-writer.svg)]
-(https://jitpack.io/#RideBeeline/android-rx-gpx-writer)
+<a href="https://jitpack.io/#RideBeeline/android-rx-gpx-writer" title="Release"><img src="https://jitpack.io/v/RideBeeline/android-rx-gpx-writer.svg"></a>
 
 Create GPX v1.1 files from streams of data on Android.
 
@@ -10,20 +9,20 @@ Create GPX v1.1 files from streams of data on Android.
 Add JitPack your root `build.gradle` at the end of repositories:
 
 ```gradle
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 Step 2. Add the dependency
 
 ```gradle
-	dependencies {
-	        compile 'com.github.RideBeeline:android-rx-gpx-writer:TAG'
-	}
+dependencies {
+	compile 'com.github.RideBeeline:android-rx-gpx-writer:VERSION'
+}
 ```
 
 ## Usage
