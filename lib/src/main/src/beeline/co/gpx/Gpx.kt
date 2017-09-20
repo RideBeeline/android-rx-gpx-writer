@@ -10,15 +10,18 @@ import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 
 data class Gpx(
-    val name: String? = null,
-    val waypoints: Observable<Waypoint> = Observable.empty(),
-    val tracks: Observable<Track> = Observable.empty()
+        val creator: String,
+        val metadata: Metadata = Metadata(),
+        val waypoints: Observable<Waypoint> = Observable.empty(),
+        val tracks: Observable<Track> = Observable.empty()
 ) : XmlWritable {
 
     override val writeOperations: Observable<XmlWrite>
         get() = newTag("gpx",
-                withAttribute("version", "1.0"),
-                Name(name).writeOperations,
+                withAttribute("xmlns", "http://www.topografix.com/GPX/1/1"),
+                withAttribute("version", "1.1"),
+                withAttribute("creator", creator),
+                metadata.writeOperations,
                 waypoints.concatMap { it.writeOperations },
                 tracks.concatMap { it.writeOperations }
         )

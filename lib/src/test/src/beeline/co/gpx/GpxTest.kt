@@ -1,53 +1,79 @@
 package beeline.co.gpx
 
+import org.apache.tools.ant.filters.StringInputStream
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.xmlunit.builder.DiffBuilder
 import org.xmlunit.builder.Input
+import org.xmlunit.validation.Languages
+import org.xmlunit.validation.Validator
 import rx.Observable
 import java.io.File
 import java.io.StringWriter
+import javax.xml.transform.stream.StreamSource
+
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class)
 class GpxTest {
 
     @Test
-    fun emptyGpx() = assertGpxEquals(fixture("empty.gpx"), Gpx())
+    fun empty() = assertGpxEquals(fixture("empty.gpx"), Gpx(creator = "empty"))
 
     @Test
-    fun waypointsWithTrack() = assertGpxEquals(fixture("waypointsWithTrack.gpx"), Gpx(
-            name = "Example gpx",
+    fun waypoints() = assertGpxEquals(fixture("waypoints.gpx"), Gpx(
+            creator = "RouteConverter",
+            metadata = Metadata(name = "Test file by Patrick"),
             waypoints = list(
-                    Waypoint(46.57638889, 8.89263889, name = "LAGORETICO", ele = 2372)
-            ),
-            tracks = list(
-                    Track(name = "Example gpx", number = 1, segments = list(
-                            TrackSegment(list(
-                                    TrackPoint(46.57608333, 8.89241667, time = 1192356597000, ele = 2376),
-                                    TrackPoint(46.57619444, 8.89252778, time = 1192356652000, ele = 2375),
-                                    TrackPoint(46.57641667, 8.89266667, time = 1192356759000, ele = 2372),
-                                    TrackPoint(46.57650000, 8.89280556, time = 1192356792000, ele = 2373),
-                                    TrackPoint(46.57638889, 8.89302778, time = 1192356800000, ele = 2374),
-                                    TrackPoint(46.57652778, 8.89322222, time = 1192356828000, ele = 2375),
-                                    TrackPoint(46.57661111, 8.89344444, time = 1192356848000, ele = 2376)
-                            ))
-                    ))
+                    Waypoint(54.9328621088893, 9.860624216140083, name = "Position 1", ele = 0.0),
+                    Waypoint(54.93293237320851, 9.86092208681491, name = "Position 2", ele = 0.0),
+                    Waypoint(54.93327743521187, 9.86187816543752, name = "Position 3", ele = 0.0),
+                    Waypoint(54.93342326167919, 9.862439849679859, name = "Position 4", ele = 0.0)
             )
     ))
 
+    @Test
+    fun track() = assertGpxEquals(fixture("track.gpx"), Gpx(
+            creator = "RouteConverter",
+            metadata = Metadata(name = "Test file by Patrick"),
+            tracks = list(Track(
+                    name = "Patrick's Track",
+                    segments = list(TrackSegment(list(
+                            TrackPoint(54.9328621088893, 9.860624216140083, name = "Position 1", ele = 0.0),
+                            TrackPoint(54.93293237320851, 9.86092208681491, name = "Position 2", ele = 0.0),
+                            TrackPoint(54.93327743521187, 9.86187816543752, name = "Position 3", ele = 0.0),
+                            TrackPoint(54.93342326167919, 9.862439849679859, name = "Position 4", ele = 0.0)
+                    )))
+            ))
+    ))
+
+    @Test
+    fun route() = assertGpxEquals(fixture("route.gpx"), Gpx(
+            creator = "RouteConverter"
+    )) // TODO
+
+    // TODO: route with track
+
     private fun <T> list(vararg items: T): Observable<T> = Observable.from(listOf(*items))
 
-    private fun fixture(filename: String): File = File("lib/src/test/fixtures", filename)
+    private fun fixture(filename: String): File = File("lib/fixtures", filename)
 
     private fun Gpx.xmlString(): String =
         writeTo(StringWriter())
                 .toBlocking()
                 .value()
                 .toString()
+
+    private fun assertValidGpx(xml: String) {
+        Validator.forLanguage(Languages.W3C_XML_SCHEMA_NS_URI)
+                .apply { setSchemaSource(StreamSource(fixture("GPXv1.1.xsd"))) }
+                .validateInstance(StreamSource(StringInputStream(xml)))
+                .let { assertTrue(it.problems.joinToString("\n") + "\n---\n" + xml, it.isValid) }
+    }
 
     private fun assertGpxEquals(expectedFile: File, actual: Gpx) {
         DiffBuilder.compare(Input.fromFile(expectedFile))
@@ -56,6 +82,7 @@ class GpxTest {
                 .withTest(Input.from(actual.xmlString()))
                 .build()
                 .let { assertFalse(it.toString(), it.hasDifferences()) }
+        assertValidGpx(actual.xmlString())
     }
 
 }
