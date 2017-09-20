@@ -43,10 +43,10 @@ class GpxTest {
             tracks = list(Track(
                     name = "Patrick's Track",
                     segments = list(TrackSegment(list(
-                            TrackPoint(54.9328621088893, 9.860624216140083, name = "Position 1", ele = 0.0),
-                            TrackPoint(54.93293237320851, 9.86092208681491, name = "Position 2", ele = 0.0),
-                            TrackPoint(54.93327743521187, 9.86187816543752, name = "Position 3", ele = 0.0),
-                            TrackPoint(54.93342326167919, 9.862439849679859, name = "Position 4", ele = 0.0)
+                            TrackPoint(54.9328621088893, 9.860624216140083, name = "Position 1", ele = 0.0, time = 1505900660000),
+                            TrackPoint(54.93293237320851, 9.86092208681491, name = "Position 2", ele = 0.0, time = 1505900661000),
+                            TrackPoint(54.93327743521187, 9.86187816543752, name = "Position 3", ele = 0.0, time = 1505900662000),
+                            TrackPoint(54.93342326167919, 9.862439849679859, name = "Position 4", ele = 0.0, time = 1505900663000)
                     )))
             ))
     ))
