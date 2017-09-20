@@ -11,7 +11,7 @@ data class Route(
 
     override val writeOperations: Observable<XmlWrite>
         get() = newTag("rte",
-                Name(name).writeOperations,
+                optionalTagWithText("name", name),
                 points.concatMap { it.writeOperations }
         )
 

@@ -15,8 +15,8 @@ data class Waypoint(
         get() = newTag("wpt",
                 withAttribute("lat", lat.toString()),
                 withAttribute("lon", lon.toString()),
-                Elevation(ele).writeOperations,
-                Name(name).writeOperations
+                optionalTagWithText("ele", ele?.toString()),
+                optionalTagWithText("name", name)
         )
 
 }

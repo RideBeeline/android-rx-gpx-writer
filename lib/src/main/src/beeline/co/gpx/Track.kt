@@ -12,8 +12,8 @@ data class Track(
 
     override val writeOperations: Observable<XmlWrite>
         get() = newTag("trk",
-                Name(name).writeOperations,
-                Number(number).writeOperations,
+                optionalTagWithText("name", name),
+                optionalTagWithText("number", number?.toString()),
                 segments.concatMap { it.writeOperations }
         )
 

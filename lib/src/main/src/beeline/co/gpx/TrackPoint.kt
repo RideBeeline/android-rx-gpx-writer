@@ -16,9 +16,9 @@ data class TrackPoint(
         get() = newTag("trkpt",
                 withAttribute("lat", lat.toString()),
                 withAttribute("lon", lon.toString()),
-                if (ele != null) Elevation(ele).writeOperations else Observable.empty(),
+                optionalTagWithText("ele", ele?.toString()),
                 if (time != null) Time(time).writeOperations else Observable.empty(),
-                if (name != null) Name(name).writeOperations else Observable.empty()
+                optionalTagWithText("name", name)
         )
 
 }

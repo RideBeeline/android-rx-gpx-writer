@@ -10,6 +10,10 @@ interface XmlWritable {
 
     fun withText(text: String): Observable<XmlWrite> = Observable.just { xml -> xml.text(text) }
 
+    fun optionalTagWithText(tag: String, value: String?) =
+            if (value != null) newTag(tag, withText(value))
+            else Observable.empty()
+
     fun newTag(
             name: String,
             vararg content: Observable<XmlWrite>

@@ -13,15 +13,11 @@ data class Metadata(
     private fun hasMetadata(): Boolean =
             name != null || description != null || author != null
 
-    private fun optionalTag(tag: String, value: String?) =
-            if (value != null) newTag(tag, withText(value))
-            else Observable.empty()
-
     override val writeOperations: Observable<XmlWrite>
         get() = if (hasMetadata()) newTag("metadata",
-                optionalTag("name", name),
-                optionalTag("desc", description),
-                optionalTag("author", author)
+                optionalTagWithText("name", name),
+                optionalTagWithText("desc", description),
+                optionalTagWithText("author", author)
         ) else Observable.empty()
 
 }
