@@ -4,15 +4,16 @@ import co.beeline.gpx.xml.XmlWritable
 import co.beeline.gpx.xml.XmlWrite
 import rx.Observable
 
-data class Route(
+data class Track(
+        val segments: Observable<TrackSegment>,
         val name: String? = null,
-        val points: Observable<RoutePoint>
+        val number: Int? = null
 ) : XmlWritable {
 
     override val writeOperations: Observable<XmlWrite>
-        get() = newTag("rte",
+        get() = newTag("trk",
                 optionalTagWithText("name", name),
-                points.concatMap { it.writeOperations }
+                optionalTagWithText("number", number?.toString()),
+                segments.concatMap { it.writeOperations }
         )
-
 }

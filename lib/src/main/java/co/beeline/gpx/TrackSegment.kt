@@ -9,8 +9,5 @@ data class TrackSegment(
 ) : XmlWritable {
 
     override val writeOperations: Observable<XmlWrite>
-        get() = newTag("trkseg",
-                points.concatMap { it.writeOperations }
-        )
-
+        get() = newTag("trkseg", points.concatMap { it.writeOperations })
 }

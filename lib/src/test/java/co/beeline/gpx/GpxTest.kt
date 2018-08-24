@@ -16,16 +16,13 @@ import java.io.File
 import java.io.StringWriter
 import javax.xml.transform.stream.StreamSource
 
-
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class)
 class GpxTest {
 
-    @Test
-    fun empty() = assertGpxEquals(fixture("empty.gpx"), Gpx(creator = "empty"))
+    @Test fun empty() = assertGpxEquals(fixture("empty.gpx"), Gpx(creator = "empty"))
 
-    @Test
-    fun waypoints() = assertGpxEquals(fixture("waypoints.gpx"), Gpx(
+    @Test fun waypoints() = assertGpxEquals(fixture("waypoints.gpx"), Gpx(
             creator = "RouteConverter",
             metadata = Metadata(name = "Test file by Patrick"),
             waypoints = list(
@@ -36,8 +33,7 @@ class GpxTest {
             )
     ))
 
-    @Test
-    fun track() = assertGpxEquals(fixture("track.gpx"), Gpx(
+    @Test fun track() = assertGpxEquals(fixture("track.gpx"), Gpx(
             creator = "RouteConverter",
             metadata = Metadata(name = "Test file by Patrick"),
             tracks = list(Track(
@@ -51,8 +47,7 @@ class GpxTest {
             ))
     ))
 
-    @Test
-    fun route() = assertGpxEquals(fixture("route.gpx"), Gpx(
+    @Test fun route() = assertGpxEquals(fixture("route.gpx"), Gpx(
             creator = "RouteConverter",
             metadata = Metadata(name = "Test file by Patrick"),
             routes = list(Route(
