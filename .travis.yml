@@ -12,8 +12,13 @@ env:
 android:
   components:
     - tools
+    - tools # Repeated to force updated version. See https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943
     - build-tools-27.0.3
     - android-27
+    - extra-android-support
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
 
 script: ./gradlew test
 
