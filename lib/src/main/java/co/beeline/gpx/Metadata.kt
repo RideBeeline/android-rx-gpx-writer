@@ -19,5 +19,4 @@ data class Metadata(
                 optionalTagWithText("desc", description),
                 optionalTagWithText("author", author)
         ) else Observable.empty()
-
 }

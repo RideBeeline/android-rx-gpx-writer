@@ -30,5 +30,4 @@ data class Gpx(
 
     fun writeTo(writer: Writer, charset: Charset = StandardCharsets.UTF_8): Single<Writer> =
             writeOperations.writeTo(writer, charset)
-
 }

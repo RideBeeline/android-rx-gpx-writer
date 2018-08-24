@@ -1,5 +1,1 @@
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.beeline.gpx">
-
-</manifest>
+<manifest package="co.beeline.gpx"/>

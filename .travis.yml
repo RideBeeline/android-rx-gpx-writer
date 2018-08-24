@@ -7,13 +7,13 @@ env:
   global:
     - GRADLE_OPTS=-Xms128m
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
-    - PATH=$PATH:/usr/local/android-sdk/build-tools/25.0.3
+    - PATH=$PATH:/usr/local/android-sdk/tools/bin:/usr/local/android-sdk/build-tools/27.0.3
 
 android:
   components:
     - tools
-    - build-tools-25.0.3
-    - android-25
+    - build-tools-27.0.3
+    - android-27
 
 script: ./gradlew test
 
