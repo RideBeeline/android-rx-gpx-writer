@@ -1,9 +1,9 @@
 package co.beeline.gpx.xml
 
 import android.util.Xml
+import io.reactivex.Observable
+import io.reactivex.Single
 import org.xmlpull.v1.XmlSerializer
-import rx.Observable
-import rx.Single
 import java.io.Writer
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
@@ -20,8 +20,6 @@ fun Observable<XmlWrite>.writeTo(writer: Writer, charset: Charset = StandardChar
                     return@just writer.close()
                 })
                 .reduce(
-                    Xml.newSerializer().apply { setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true) },
-                    { xml, write -> xml.apply { write(this) } }
-                )
+                        Xml.newSerializer().apply { setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true) }
+                ) { xml, write -> xml.apply { write(this) } }
                 .map { writer }
-                .toSingle()

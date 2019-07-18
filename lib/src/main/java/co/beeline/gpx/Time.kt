@@ -2,7 +2,7 @@ package co.beeline.gpx
 
 import co.beeline.gpx.xml.XmlWritable
 import co.beeline.gpx.xml.XmlWrite
-import rx.Observable
+import io.reactivex.Observable
 import java.text.FieldPosition
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,6 +1,7 @@
 package co.beeline.gpx.xml
 
-import rx.Observable
+import io.reactivex.Observable
+
 
 interface XmlWritable {
 
@@ -19,7 +20,7 @@ interface XmlWritable {
     fun newTag(name: String, vararg content: Observable<XmlWrite>): Observable<XmlWrite> =
             Observable.concat(
                     Observable.just { xml -> xml.startTag(null, name) },
-                    Observable.concat(Observable.from(content)),
+                    Observable.concat(Observable.fromIterable(content.asIterable())),
                     Observable.just { xml -> xml.endTag(null, name) }
             )
 }
