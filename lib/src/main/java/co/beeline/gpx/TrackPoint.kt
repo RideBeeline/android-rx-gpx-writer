@@ -2,7 +2,7 @@ package co.beeline.gpx
 
 import co.beeline.gpx.xml.XmlWritable
 import co.beeline.gpx.xml.XmlWrite
-import rx.Observable
+import io.reactivex.Observable
 
 data class TrackPoint(
         val lat: Double,

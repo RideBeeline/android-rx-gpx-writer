@@ -1,5 +1,6 @@
 package co.beeline.gpx
 
+import io.reactivex.Observable
 import org.apache.tools.ant.filters.StringInputStream
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -11,7 +12,6 @@ import org.xmlunit.builder.DiffBuilder
 import org.xmlunit.builder.Input
 import org.xmlunit.validation.Languages
 import org.xmlunit.validation.Validator
-import rx.Observable
 import java.io.File
 import java.io.StringWriter
 import javax.xml.transform.stream.StreamSource
@@ -61,14 +61,13 @@ class GpxTest {
             ))
     ))
 
-    private fun <T> list(vararg items: T): Observable<T> = Observable.from(listOf(*items))
+    private fun <T> list(vararg items: T): Observable<T> = Observable.fromIterable(listOf(*items))
 
     private fun fixture(filename: String): File = File("fixtures", filename)
 
     private fun Gpx.xmlString(): String =
         writeTo(StringWriter())
-                .toBlocking()
-                .value()
+                .blockingGet()
                 .toString()
 
     private fun assertValidGpx(xml: String) {

@@ -3,8 +3,8 @@ package co.beeline.gpx
 import co.beeline.gpx.xml.XmlWritable
 import co.beeline.gpx.xml.XmlWrite
 import co.beeline.gpx.xml.writeTo
-import rx.Observable
-import rx.Single
+import io.reactivex.Observable
+import io.reactivex.Single
 import java.io.Writer
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
